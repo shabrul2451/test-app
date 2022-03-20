@@ -8,6 +8,7 @@ steps:
       revision: master
       storage: 500Mi
       access_mode: ReadWriteOnce
+      build_type: buildpack
       service_account: test-sa
       images: zeromsi2/test-dev
       args_from_configmaps: tekton/cm-test
