@@ -6,11 +6,8 @@ steps:
     params:
       repository_type: git
       revision: master
-      storage: 500Mi
-      access_mode: ReadWriteOnce
-      build_type: buildpack
       service_account: test-sa
-      images: zeromsi2/test-dev
+      images: zeromsi2/test-dev,zeromsi2/test-pro
       args_from_configmaps: tekton/cm-test
       args: key3:value1,key4:value2
     next: 
@@ -37,16 +34,17 @@ steps:
       name: ubuntu
       namespace: default
       type: deployment
+      revision: master
       env: dev
       images: zeromsi2/test-dev
     next: 
       - jenkinsJob
-  - name: jenkinsJob
+  - name: jenkinsjob
     type: JENKINS_JOB
     trigger: AUTO
     params:
-      url: http://localhost:8080
-      job: tekton
+      url: http://jenkins.default.svc:8080
+      job: new
       secret: jenkins-credentials
       params: id:123,verbosity:high   
     next: null
