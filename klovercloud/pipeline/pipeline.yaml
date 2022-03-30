@@ -7,7 +7,7 @@ steps:
       repository_type: git
       revision: master
       service_account: test-sa
-      images: zeromsi2/test-dev,zeromsi2/test-pro
+      images: shabrul2451/test-dev,shabrul2451/test-pro
       args_from_configmaps: tekton/cm-test
       args: key3:value1,key4:value2
     next: 
@@ -36,7 +36,7 @@ steps:
       type: deployment
       revision: master
       env: dev
-      images: zeromsi2/test-dev
+      images: shabrul2451/test-dev
     next: 
       - jenkinsJob
   - name: jenkinsjob
