@@ -41,7 +41,7 @@ steps:
       images: shabrul2451/test-dev
     next: 
       - jenkinsJob
-  - name: jenkinsjob
+  - name: jenkinsJob
     type: JENKINS_JOB
     trigger: AUTO
     params:
