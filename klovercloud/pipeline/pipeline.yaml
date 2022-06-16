@@ -5,13 +5,10 @@ steps:
     trigger: AUTO
     params:
       repository_type: git
-      revision: master
       service_account: test-sa
       images: shabrul2451/test-dev,shabrul2451/test-pro
       args_from_configmaps: tekton/cm-test
       args: key3:value1,key4:value2
-      storage: 500Mi
-      access_mode: ReadWriteOnce
     next: 
       - interstep
   - name: interstep
@@ -26,6 +23,7 @@ steps:
       envs: key3:value1,key4:value2
       command: echo
       command_args: Hello World
+      script: echo "Hello zeromsi" // script_from_configmap: tekton/script
     next:
       - deployDev
   - name: deployDev
@@ -37,6 +35,8 @@ steps:
       namespace: default
       type: deployment
       revision: master
+      trunk_based: enabled
+      rollout_restart: true
       env: dev
       images: shabrul2451/test-dev
     next: 
