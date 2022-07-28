@@ -43,6 +43,8 @@ steps:
       images: shabrul2451/test-dev
     next: 
       - jenkins
+      - jenkins2
+      - jenkins1
   - name: jenkins
     type: JENKINS_JOB
     trigger: AUTO
