@@ -13,7 +13,7 @@ steps:
     next: 
       - interstep
   - name: interstep
-    type: sabrul
+    type: INTERMEDIARY
     trigger: AUTO
     params:
       env: test
