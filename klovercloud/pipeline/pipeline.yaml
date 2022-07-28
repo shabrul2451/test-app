@@ -35,6 +35,7 @@ steps:
       agent: test_agent
       name: ubuntu
       namespace: default
+      type: deployment
       revision: master
       trunk_based: enabled
       rollout_restart: true
