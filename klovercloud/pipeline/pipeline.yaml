@@ -12,11 +12,20 @@ steps:
       allowed_branches: dev,master
     next: 
       - interstep
-  - name: interstep
-    type: INTERMEDIARY
+  - name:
+    type:
     trigger: AUTO
     params:
-
+      env: test
+      revision: latest
+      service_account: test-sa
+      images: ubuntu
+      envs_from_configmaps: tekton/cm-test
+      envs_from_secrets: tekton/cm-test
+      envs: key3:value1,key4:value2
+      command: echo
+      command_args: Hello World
+      script: echo "Hello zeromsi"
     next:
       - deployDev
   - name: deployDev
