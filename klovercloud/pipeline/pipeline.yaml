@@ -12,8 +12,8 @@ steps:
       allowed_branches: dev,master
     next: 
       - interstep
-  - name:
-    type:
+  - name: interstep
+    type: INTERMEDIARY
     trigger: AUTO
     params:
       env: test
