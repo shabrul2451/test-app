@@ -32,7 +32,7 @@ steps:
     type: DEPLOY
     trigger: AUTO
     params:
-      agent: test_agent
+      agent: local_agent
       name: ubuntu
       namespace: default
       type: deployment
