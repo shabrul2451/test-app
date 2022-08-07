@@ -52,7 +52,7 @@ steps:
       url: http://jenkins.default.svc:8080
       job: new
       secret: jenkins-credentials
-      params: id:1234,verbosity:high   
+      params: id:1234123,verbosity:high   
     next:
      - jenkins1
   - name: jenkins1
