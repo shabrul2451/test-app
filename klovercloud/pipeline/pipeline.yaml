@@ -27,6 +27,19 @@ steps:
       command_args: Hello World
       script: echo "Hello zeromsi"
     next:
+      - build2
+  - name: build2
+    type: BUILD
+    trigger: AUTO
+    params:
+      repository_type: git
+      service_account: test-sa
+      images: shabrul2451/test2
+      args_from_configmaps: tekton/cm-test
+      args: key3:value1,key4:value2
+      url: https://github.com/shabrul2451/test-app-1
+      revision: master
+    next: 
       - deployDev
   - name: deployDev
     type: DEPLOY
