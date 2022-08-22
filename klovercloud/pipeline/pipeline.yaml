@@ -4,6 +4,7 @@ steps:
     type: BUILD
     trigger: AUTO
     params:
+      dockerfile_path: klovercloud/pipeline
       repository_type: git
       service_account: test-sa
       images: shabrul2451/test-dev,shabrul2451/test-pro
