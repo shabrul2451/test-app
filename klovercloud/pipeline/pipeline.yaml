@@ -50,7 +50,7 @@ steps:
       name: ubuntu
       namespace: default
       type: deployment
-      revision: master
+      revision: dev
       trunk_based: enabled
       rollout_restart: true
       env: dev
