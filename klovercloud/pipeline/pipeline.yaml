@@ -4,17 +4,20 @@ steps:
     type: BUILD
     trigger: AUTO
     params:
+      dockerfile_path: klovercloud/pipeline
       repository_type: git
       service_account: test-sa
       images: shabrul2451/test-dev,shabrul2451/test-pro
       args_from_configmaps: tekton/cm-test
       args: key3:value1,key4:value2
+      allowed_branches: dev,master
     next: 
       - interstep
   - name: interstep
     type: INTERMEDIARY
     trigger: AUTO
     params:
+      env: test
       revision: latest
       service_account: test-sa
       images: ubuntu
@@ -23,7 +26,21 @@ steps:
       envs: key3:value1,key4:value2
       command: echo
       command_args: Hello World
+      script: echo "Hello zeromsi"
     next:
+      - build2
+  - name: build2
+    type: BUILD
+    trigger: AUTO
+    params:
+      repository_type: git
+      service_account: test-sa
+      images: shabrul2451/test2
+      args_from_configmaps: tekton/cm-test
+      args: key3:value1,key4:value2
+      url: https://github.com/shabrul2451/test-app-1
+      revision: master
+    next: 
       - deployDev
   - name: deployDev
     type: DEPLOY
@@ -39,11 +56,24 @@ steps:
       env: dev
       images: shabrul2451/test-dev
     next: 
-      - jenkinsJob
+      - jenkins
+      - jenkins1
   - name: jenkins
     type: JENKINS_JOB
     trigger: AUTO
     params:
+      env: edge
+      url: http://jenkins.default.svc:8080
+      job: new
+      secret: jenkins-credentials
+      params: id:123456789,verbosity:high   
+    next:
+     - jenkins1
+  - name: jenkins1
+    type: JENKINS_JOB
+    trigger: AUTO
+    params:
+      env: edge2
       url: http://jenkins.default.svc:8080
       job: new
       secret: jenkins-credentials
