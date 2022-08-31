@@ -20,11 +20,8 @@ steps:
     params:
       env: test
       revision: latest
-      service_account: test-sa
-      images: ubuntu
+      images: quay.io/klovercloud/automation/klovercloud-snyk:v0.0.1
       envs_from_configmaps: tekton/cm-test
-      envs_from_secrets: tekton/cm-test
-      envs: key3:value1,key4:value2
       command: echo
       command_args: Hello World
       script: echo "Hello zeromsi"
